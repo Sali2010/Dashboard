@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { GoDot } from "react-icons/go";
 import { Stacked, Pie, Button, SparkLine } from "../../components/";
@@ -9,11 +9,12 @@ import {
 } from "./../../data/dummy";
 import { contextStore } from "./../../contexts/index.";
 const Ecommerce = () => {
+  const { currentColor } = useContext(contextStore);
   return (
     <div className="mt-12">
-      <div className="flex flex-wrap lg:flex-nowrap justify-center">
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repeat bg-cover bg-center">
-          <div className="flex justify-between items-center">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center ">
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 flex flex-row items-center justify-between">
+          <div className="flex justify-between items-center flex-row">
             <div>
               <p className="font-bold text-gray-400 ">Earning</p>
               <p className="text-2xl"> $435,322.33</p>
@@ -22,7 +23,7 @@ const Ecommerce = () => {
           <div className="mt-6">
             <Button
               title={"Download"}
-              backgroundColor={"aqua"}
+              backgroundColor={currentColor}
               borderRadius={4}
               color={"white"}
               textSize={"md"}
@@ -55,9 +56,11 @@ const Ecommerce = () => {
       </div>
 
       <div className="flex gap-10 flex-wrap justify-center">
-        <div className="bg-white dark:bg-secondary-dark-bg m-3 rounded-2xl md:w-780 ">
+        <div className="bg-white dark:bg-secondary-dark-bg m-3 rounded-2xl md:w-780 p-6">
           <div className="flex justify-between">
-            <p className="text-xl font-semibold ">Revenue Update</p>
+            <p className="text-xl font-semibold dark:text-white">
+              Revenue Update
+            </p>
             <div className="flex items-center gap-2 ">
               <p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
                 <span>
@@ -77,7 +80,9 @@ const Ecommerce = () => {
             <div className="border-r-1 border-color m-4 pr-10 ">
               <div>
                 <p>
-                  <span className="text-3xl font-semibold ">$25,857</span>
+                  <span className="text-3xl font-semibold dark:text-white">
+                    $25,857
+                  </span>
                   <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
                     23%
                   </span>
@@ -87,25 +92,27 @@ const Ecommerce = () => {
 
               <div className="mt-8">
                 <p>
-                  <span className="text-3xl font-semibold ">$12,735</span>
+                  <span className="text-3xl font-semibold dark:text-white">
+                    $12,735
+                  </span>
                 </p>
                 <p className="text-gray-500 mt-1 ">Expense</p>
               </div>
 
               <div className="mt-5">
                 <SparkLine
-                  currentColor="aqua"
+                  currentColor={currentColor}
                   id="line-sparkline"
                   type="Line"
                   height="80px"
                   width="250px"
-                  color="aqua"
+                  color={currentColor}
                   data={SparklineAreaData}
                 />
               </div>
               <div className="mt-10">
                 <Button
-                  backgroundColor={"aqua"}
+                  backgroundColor={currentColor}
                   borderRadius={4}
                   color={"white"}
                   title={"Download Report"}

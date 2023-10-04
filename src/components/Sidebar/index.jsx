@@ -8,7 +8,8 @@ import { styles } from "./indexStyle";
 import { contextStore } from "../../contexts/index.";
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize } = useContext(contextStore);
+  const { activeMenu, setActiveMenu, screenSize, currentColor } =
+    useContext(contextStore);
 
   const handleCloseSidebar = () => {
     if (activeMenu && screenSize <= 900) return setActiveMenu(false);
@@ -43,9 +44,15 @@ const Sidebar = () => {
                 <NavLink
                   to={`/${res.name}`}
                   key={res.name}
+                  style={({ isActive }) => ({
+                    backgroundColor: isActive ? currentColor : "",
+                    color: isActive ? "white" : " ",
+                  })}
                   onClick={handleCloseSidebar}
                   className={({ isActive }) =>
-                    isActive ? styles.activeStyle : styles.normalStyle
+                    isActive
+                      ? styles.activeStyle
+                      : `${styles.normalStyle} hover:bg-${currentColor}`
                   }
                 >
                   {res.icon}

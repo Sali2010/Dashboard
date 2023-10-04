@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ChartComponent,
   Inject,
@@ -14,18 +14,26 @@ import {
   stackedPrimaryXAxis,
   stackedPrimaryYAxis,
 } from "../../data/dummy";
+import { contextStore } from "../../contexts/index.";
 
 const Stacked = ({ width, height }) => {
+  const { currentMode } = useContext(contextStore);
   return (
     <ChartComponent
       width={width}
       height={height}
       id="charts"
       primaryYAxis={stackedPrimaryYAxis}
+      background={currentMode === "Dark" ? "rgb(51 55 62)" : "white"}
       primaryXAxis={stackedPrimaryXAxis}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
-      legendSettings={{ background: "white" }}
+      legendSettings={{
+        background: currentMode === "Dark" ? "rgb(51 55 62)" : "white",
+        textStyle: {
+          color: currentMode === "Dark" ? "white" : "rgb(51 55 62)",
+        },
+      }}
     >
       <Inject services={[Legend, Category, StackingColumnSeries, Tooltip]} />
       <SeriesCollectionDirective>

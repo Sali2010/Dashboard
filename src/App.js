@@ -26,15 +26,23 @@ import {
 } from "./pages/index.jsx";
 import { contextStore } from "./contexts/index.";
 const App = () => {
-  const { activeMenu, setActiveMenu } = useContext(contextStore);
+  const {
+    activeMenu,
+    setActiveMenu,
+    themeSettings,
+    setThemeSettings,
+    currentColor,
+    currentMode,
+  } = useContext(contextStore);
   return (
-    <div>
+    <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
         <div className="relative flex dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content={"setting"} position="TopCenter">
               <button
-                style={{ background: "aqua", borderRadius: "50%" }}
+                onClick={() => setThemeSettings(true)}
+                style={{ background: currentColor, borderRadius: "50%" }}
                 type="button"
                 className="text-3xl hover:drop-shadow-xl p-3 hover:bg-light-gray text-white"
               >
@@ -49,13 +57,14 @@ const App = () => {
           ) : null}
 
           <div
-            className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
+            className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${
               activeMenu ? "md:ml-72" : "flex-2"
             }`}
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
+            {themeSettings && <ThemeSetting />}
             <Routes>
               <Route path="/" element={<Ecommerce />} />
               <Route path="/ecommerce" element={<Ecommerce />} />
@@ -66,7 +75,7 @@ const App = () => {
 
               <Route path="/kanban" element={<Kanban />} />
               <Route path="/editor" element={<Editor />} />
-              <Route path="/calender" element={<Calendar />} />
+              <Route path="/calendar" element={<Calendar />} />
               <Route path="/color-picker" element={<ColorPicker />} />
 
               <Route path="/line" element={<Line />} />

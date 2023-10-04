@@ -19,9 +19,8 @@ const NavButton = ({ title, onClick, icon, color, dotColor }) => (
       <span
         style={{ background: dotColor }}
         className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2 "
-      >
-      </span>
-        {icon}
+      ></span>
+      {icon}
     </button>
   </TooltipComponent>
 );
@@ -34,6 +33,7 @@ const Navbar = () => {
     setIsClicked,
     screenSize,
     setScreenSize,
+    currentColor,
   } = useContext(contextStore);
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -53,7 +53,7 @@ const Navbar = () => {
     <div className="flex justify-between p-2 md:mx-6 relative">
       <NavButton
         title={"Menu"}
-        color={"aqua"}
+        color={currentColor}
         onClick={() => {
           setActiveMenu((prevState) => !prevState);
         }}
@@ -62,7 +62,7 @@ const Navbar = () => {
       <div className="flex">
         <NavButton
           title={"Cart"}
-          color={"aqua"}
+          color={currentColor}
           onClick={() => {
             handleClick("cart");
           }}
@@ -70,7 +70,7 @@ const Navbar = () => {
         />
         <NavButton
           title={"Chat"}
-          color={"aqua"}
+          color={currentColor}
           dotColor={"#03c9d7"}
           onClick={() => {
             handleClick("chat");
@@ -79,7 +79,7 @@ const Navbar = () => {
         />
         <NavButton
           title={"Notifications"}
-          color={"aqua"}
+          color={currentColor}
           dotColor={"#03c9d7"}
           onClick={() => {
             handleClick("notifications");
