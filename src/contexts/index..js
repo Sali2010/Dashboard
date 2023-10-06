@@ -16,6 +16,7 @@ export const contextStore = createContext({
   setColor: () => {},
   themeSettings: [],
   setThemeSettings: () => {},
+  initialState: [],
 });
 
 const initialState = {
@@ -63,6 +64,7 @@ export const ContextProvider = ({ children }) => {
         setMode,
         themeSettings,
         setThemeSettings,
+        initialState,
       }}
     >
       {children}

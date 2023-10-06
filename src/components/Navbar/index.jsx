@@ -6,7 +6,7 @@ import { RiNotification3Line } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import avatar from "../../data/avatar.jpg";
-import { Cart, Chat, Notifications, UserProfile } from "../index";
+import { Cart, Chat, Notification, UserProfile } from "../index";
 import { contextStore } from "../../contexts/index.";
 const NavButton = ({ title, onClick, icon, color, dotColor }) => (
   <TooltipComponent position="BottomCenter" content={title}>
@@ -47,8 +47,6 @@ const Navbar = () => {
     setActiveMenu(mobileSize);
   }, [screenSize]);
 
-  console.log(screenSize);
-
   return (
     <div className="flex justify-between p-2 md:mx-6 relative">
       <NavButton
@@ -82,7 +80,7 @@ const Navbar = () => {
           color={currentColor}
           dotColor={"#03c9d7"}
           onClick={() => {
-            handleClick("notifications");
+            handleClick("notification");
           }}
           icon={<RiNotification3Line />}
         />
@@ -101,7 +99,10 @@ const Navbar = () => {
           </div>
         </TooltipComponent>
 
-        {isClicked.cart && <p>cart</p>}
+        {isClicked.cart && <Cart />}
+        {isClicked.chat && <Chat />}
+        {isClicked.notification && <Notification />}
+        {isClicked.userProfile && <UserProfile />}
       </div>
     </div>
   );
